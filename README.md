@@ -49,7 +49,7 @@ Alla packages måste ha en `main.js`. Det enda filen **måste** innehålla är e
 
 Packges registreras i `config.js` för att underlätta lookup. Döp paketen till samma som dess folder. Använd bara lowercase för allt som registreras i `config.js`, både under `paths` och `packages`.
 
-### <a id="package-dependencies">Package dependencies</a>
+## <a id="package-dependencies">Package dependencies</a>
 Genom att i `config.js` ha registrerat sina paket kan man oberoende av relativ sökväg till paketet bara referera till det registrerade paketets namn. Så istället för t.ex:
 `"../../mittpaket"` blir sökvägen till beroendet kort och gott `"mittpaket"`
 
@@ -58,6 +58,9 @@ Inom paketet referear man till filer som ligger på samma nivå som filen man jo
 Till en specifik modul i ett externt paket `"annatpaket/SuperView"`
 
 [Referens till Require packages](http://requirejs.org/docs/api.html#packages)
+
+## Skapa och registrera paket
+***Kommer inom kort***
 
 ## <a id="underscore-templates">Underscore templates</a>
 Lägg med fördel alla templates i `mittpaket/templates`. Att kompilera templates i klienten är en tungt, varför förkompilerade templates är att föredra.
