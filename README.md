@@ -93,3 +93,5 @@ Ibland kan det finnas behov av att gör enklare uträkningar i en template t.ex.
 
 ### Ful syntax?
 Gillar du inte syntaxen? Föredrar du Mustache syntax? Se [templatesetting](http://underscorejs.org/#template) för att interpolera.
+
+---
