@@ -1,0 +1,51 @@
+html {
+	font: 16px/1.4 Arial, Helvetica, 'sans-serif';
+}
+
+body {
+	background: url('../../Images/ps_neutral.png') 0 0;
+}
+
+$gutter: 20px;
+$color-gray-base: #e4e4e4;
+
+@mixin centered-section {
+	margin: 0 auto 20px;
+	overflow: hidden;
+	padding: 20px;
+	width: 960px;
+}
+
+.hero {
+	@include centered-section;
+}
+
+.l-container {
+	@include centered-section;
+	background-color: white;
+	padding-top: 10px;
+}
+
+.block-link {
+	background-color: $color-gray-base;
+	display: block;
+	padding: ($gutter/2) $gutter;
+	text-decoration: none;
+
+	&:hover {
+		background-color: darken($color-gray-base, 20%);
+	}
+}
+
+.category {
+	border-right: 1px solid blue;
+	display: inline-block;
+}
+
+.category.first {
+	border-left: 1px solid blue;
+}
+
+.overview {
+
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Jupiterjs",
+  "preferGlobal": "false",
+  "version": "0.1.0",
+  "description": "A project template for modern js",
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-contrib-jst": "~0.4.1",
+    "grunt-init": "~0.2.0",
+    "grunt-contrib-requirejs": "~0.4.0",
+    "grunt-contrib-sass": "~0.3.0"
+  }
+}
