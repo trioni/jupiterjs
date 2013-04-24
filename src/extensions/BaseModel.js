@@ -4,7 +4,7 @@ define([
     'backbone'
 ], function( _, Backbone ) {
     'use strict';
-    /* Create a BaseView to allow computed attributes. Like ListIndex */
+    /* Create a BaseModel to allow computed attributes. Like ListIndex */
     var BaseModel = Backbone.Model.extend({
         defaults: {
             ListIndex: function() {
