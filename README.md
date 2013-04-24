@@ -25,7 +25,7 @@ I DOM:en ligger till en början bara en (1) script-referens i `head`
 Paketen behöver nödvändigtvis inte mappa mot elementet. Vill man ange flera paket i ett och samma attribut kan man pipe `|` separera paketen:
 
 ```html
-<div class="foo" data-package="mittpaket"></div>
+<div class="foo" data-package="mittpaket|dittpaket"></div>
 ```
 
 ### Varför packages?
@@ -63,6 +63,7 @@ Alla packages måste ha en `main.js`. Det enda filen **måste** innehålla är e
 Packges registreras i `config.js` för att underlätta lookup. Döp paketen till samma som dess folder. Använd bara lowercase för allt som registreras i `config.js`, både under `paths` och `packages`.
 
 ```javascript
+// config.js
 define([], function() {
     'use strict';
     return require.config({
