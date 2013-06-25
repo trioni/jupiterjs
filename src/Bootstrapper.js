@@ -1,5 +1,3 @@
-var jupiter = jupiter || {};
-
 require([
     'config'
 ], function() {

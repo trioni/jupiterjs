@@ -14,9 +14,7 @@ define([], function() {
 
         packages: [
             { name: 'packageloader', location: 'packages/packageloader' },
-            { name: 'search', location: 'packages/search' },
-            { name: 'overview', location: 'packages/overview' },
-            { name: 'units', location: 'packages/units' }
+            { name: 'test', location: 'packages/test' },
         ],
 
         // The shim section is used to load scripts that doesn't support AMD

@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    style: 'compressed'
+                    style: 'compressed' // compact / expanded / nested / compressed
                 },
                 src: 'styles/sass/*.scss',
                 dest: 'styles/css/<%= filenames.style %>.css'
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                     style: 'compact'
                 },
                 src: 'styles/sass/*.scss',
-                dest: 'styles/css/<%= filename.style %>.css'
+                dest: 'styles/css/<%= filenames.style %>.css'
             }
         },
         files: {
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 'src/packages/*/templates/*.html'
             ],
             styles: [
-                'styles/sass/*.scss'
+                'styles/sass/**/*.scss'
             ]
         },
         jstConfig: {
@@ -70,104 +70,65 @@ module.exports = function(grunt) {
             }
         },
         requirejs: {
-            compile: {
+            /* Official example build file: https://github.com/jrburke/r.js/blob/master/build/example.build.js */
+            modules: [
+                {
+                    name: 'Bootstrapper',
+                    include: [
+                        'requireLib',
+                        'jquery',
+                        'underscore',
+                        'backbone',
+                        'marionette',
+                    ]
+                },
+                { name: 'packageloader', exclude: ['Bootstrapper'] },
+                { name: 'test', exclude: ['Bootstrapper'] }
+            ],
+            /* Will build i master file inlcuding most libs, plugins and the bootstrapping + 1 package-file for each package */
+            dev: {
                 options: {
                     appDir: 'src/',
                     baseUrl: './',
-                    mainConfigFile: 'web-src/config.js',
+                    mainConfigFile: 'src/config.js',
                     dir: 'dist/',
                     paths: {
-                        'jquery': './vendor/jquery/1.9.1/jquery',
-                        'requireLib': './vendor/require/require',
+                        'requireLib': './vendor/require/require'
                     },
+                    optimize: 'none',
                     removeCombined: false,
                     preserveLicenseComments: true,
-                    // Excluding Marionette will also exclude all of it's dependencies: Backbone, Underscore, jQuery. Unless excludeShallow
+                    modules: '<%= requirejs.modules %>'
+                }
+            },
+            /* Will build i master file inlcuding most libs, plugins and the bootstrapping + 1 package-file for each package */
+            dist: {
+                options: {
+                    appDir: 'src/',
+                    baseUrl: './',
+                    mainConfigFile: 'src/config.js',
+                    dir: 'dist/',
+                    paths: {
+                        'requireLib': './vendor/require/require'
+                    },
+                    removeCombined: true,
+                    preserveLicenseComments: false,
+                    modules: '<%= requirejs.modules %>'
+                }
+            },
+            /* Will build 1 single file */
+            single: {
+                options: {
+                    baseUrl: 'src/',
+                    mainConfigFile: 'src/config.js',
+                    optimize: 'none',
+                    removeCombined: false,
+                    preserveLicenseComments: true,
+                    dir: 'dist/',
                     modules: [
-                        {
-                            name: 'Bootstrapper',
-                            include: [
-                                'requireLib',
-                                'jquery',
-                                'underscore',
-                                'backbone',
-                                'marionette',
-                                'pubsub'
-                            ]
-                        },
-                        { name: 'packageloader', exclude: ['marionette'] },
-                        {
-                            name: 'labels',
-                            exclude: [
-                                'querystring',
-                                'entities'
-                            ]
-                        },
-                        { name: 'facets', exclude: ['marionette','text'] },
-                        {
-                            name: 'empty',
-                            exclude: [
-                                'text',
-                                'marionette',
-                                'params',
-                                'querystring',
-                                'labels',
-                                'app'
-                            ]
-                        },
-                        { name: 'master', exclude: ['marionette'] },
-                        { name: 'entities', exclude: ['marionette'] },
-                        { name: 'resultlist', exclude: ['marionette'] },
-                        { name: 'searchbox', exclude: ['marionette'] },
-                        { name: 'filter', exclude: ['marionette','labels'] },
-                        {
-                            name: 'querystring',
-                            exclude: [
-                                'marionette',
-                                'params'
-                            ]
-                        },
-                        {
-                            name: 'pushes',
-                            exclude: [
-                                'marionette',
-                                'labels',
-                                'entities',
-                                'pubsub'
-                            ]
-                        },
-                        {
-                            name: 'news',
-                            exclude: [
-                                'marionette',
-                                'labels',
-                                'entities',
-                                'pubsub'
-                            ]
-                        },
-                        { name: 'mixins', exclude: ['marionette'] },
-                        {
-                            name: 'framework',
-                            exclude: [
-                                'marionette',
-                                'labels',
-                                'pubsub',
-                                'animatedanchor'
-                            ]
-                        },
-                        {
-                            name: 'content',
-                            exclude: [
-                                'marionette',
-                                'framework/Page',
-                                'pubsub',
-                                'scrollspy',
-                                'animatedanchor'
-                            ]
-                        }
+                        { name: 'BulkBootstrapper' }
                     ]
                 }
-
             }
         }
     });
